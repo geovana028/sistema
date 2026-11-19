@@ -1,0 +1,48 @@
+<%- include('../cabecalho.ejs')%>
+    <h1>Empresas</h1>
+    <div>
+        <form action="/empresa/lst" method="post">
+            <input type="text" name="filtro" id="" placeholder="digite o nome">
+            <button type="submit">Pesquisar</button>
+        </form>
+    </div>
+    <a href="/empresa/add">+ Empresa</a>
+    <table>
+        <tr>
+            <td>Nome</td>
+            <td>Área</td>
+            <td>Data de Fundação</td>
+            <td>CNPJ</td>
+            <td>Foto</td>
+            <td>Ações</td>
+        </tr>
+
+        <% for (const caso of empresas) { %>
+            <tr>
+                <td>
+                    <%= caso.nome %>
+                </td>
+                <td>
+                    <%= caso.area %>
+                </td>
+                <td>
+                    <%= new Date(caso.anofundacao).toLocaleDateString('pt-BR') %>
+                </td>
+                <td>
+                    <%= caso.cnpj %>
+                </td>
+                <td>
+                    <% if (caso.foto) { %>
+                        <img src="<%= caso.foto %>" alt="Logo" style="width: 100px; height: 100px; object-fit: cover;">
+                    <% } else { %>
+                        Sem logo
+                    <% } %>
+                </td>
+                <td>
+                    <a href="/empresa/edt/<%= caso.id %>">Editar</a>
+                    <a href="/empresa/del/<%= caso.id %>">Excluir</a>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <%- include('../rodape.ejs')%>

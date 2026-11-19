@@ -1,0 +1,26 @@
+<%- include('../cabecalho.ejs') %>
+    <h1>Editar Dados da Empresa</h1>
+    <div>
+        <a href="/caso/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="hidden" name="id" value="<%=Empresa.id%>"><br>
+            <label>Empresa:</label>
+            <input type="text" name="nome" value="<%=Empresa.nome%>"><br>
+            <label>Área:</label>
+            <input type="text" name="area" value="<%=Empresa.area%>"><br>
+            <label>Data de Fundação:</label>
+            <input type="date" name="anofundacao" value="<%= new Date(Empresa.anofundacao).toISOString().slice(0, 10) %>"><br>
+            <label>CNPJ:</label>
+            <input type="text" name="cnpj" value="<%=Empresa.cnpj%>"><br>
+            <label>Logo ou Foto da Empresa:</label>
+            <input type="file" name="foto" accept="image/*"><br>
+
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%- include('../rodape.ejs') %>

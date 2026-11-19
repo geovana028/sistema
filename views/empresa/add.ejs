@@ -1,0 +1,23 @@
+<%- include('../cabecalho.ejs') %>
+    <h1>Adicionar Empresa</h1>
+    <div>
+        <a href="/julgamento/lst">Listar</a>
+    </div>
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            <label>Empresa:</label>
+            <input type="text" name="nome"><br>
+            <label>Área:</label>
+            <input type="text" name="area"><br>
+            <label>Data de Fundação:</label>
+            <input type="date" name="anofundacao"><br>
+            <label>CNPJ:</label>
+            <input type="text" name="cnpj"><br>
+            <label>Logo ou Foto da Empresa:</label>
+            <input type="file" name="foto" accept="image/*"><br>
+            <button type="submit">Cadastrar</button>
+
+        </form>
+    </div>
+
+    <%- include('../rodape.ejs') %>

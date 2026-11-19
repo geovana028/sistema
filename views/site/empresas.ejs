@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Sistema Jurídico — informação jurídica clara e acessível.">
+    <title>Empresas | Sistema Jurídico</title>
+    <link rel="icon" href="/favicon.svg">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        .company-logo { width: 72px; height: 72px; object-fit: contain; border-radius: 12px; background: #fff; padding: 4px; }
+        .company small { display: block; margin-top: 4px; }
+    </style>
+</head>
+
+<body><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div class="utility-bar">
+        <div class="container utility-inner">
+            <p>Informação jurídica clara, confiável e acessível.</p>
+            <div aria-label="Opções de acessibilidade"><span>A−</span><span>A+</span><span>Alto contraste</span></div>
+        </div>
+    </div>
+    <header class="site-header">
+        <div class="container header-inner"><a class="brand" href="/site"><span
+                    class="brand-mark">SJ</span><span><strong>Sistema Jurídico</strong><small>Conhecimento que
+                        orienta</small></span></a>
+            <nav class="main-nav" aria-label="Navegação principal"><a href="/site">Início</a><a
+                    href="/site/casos">Casos</a><a class="active" href="/site/empresas">Empresas</a><a
+                    href="/site/tribunais">Tribunais</a><a href="/site/curiosidades">Curiosidades</a></nav>
+            <div class="header-actions"><a class="icon-link" href="/site/busca" aria-label="Pesquisar">⌕</a><a
+                    class="button" href="/site/login">Entrar</a></div>
+        </div>
+    </header>
+    <main id="conteudo">
+        <section class="page-hero">
+            <div class="container"><span class="eyebrow">Empresas</span>
+                <h1>Histórico jurídico em contexto</h1>
+                <p>Conheça processos, decisões e julgamentos relacionados às principais empresas do país.</p>
+                <form class="search" action="/site/busca"><input name="q" aria-label="Pesquisar empresas"
+                        placeholder="Digite o nome de uma empresa"><button>Pesquisar</button></form>
+            </div>
+        </section>
+        <section class="section soft-section">
+            <div class="container">
+                <div class="filters"><span class="filter active">Todas</span></div>
+                <div class="grid grid-4">
+                    <% for (const emp of Empresas) { %>
+                        <article class="card company">
+                            <% if (emp.foto) { %>
+                                <img class="company-logo" src="<%= emp.foto %>" alt="Logo <%= emp.nome %>">
+                            <% } else { %>
+                                <span class="avatar violet"><%= String(emp.nome).slice(0, 2).toUpperCase() %></span>
+                            <% } %>
+                            <h3><%= emp.nome %></h3>
+                            <p><%= emp.area %></p>
+                            <% if (emp.anofundacao && new Date(emp.anofundacao).getUTCFullYear() > 1970) { %>
+                                <small>Fundada em <%= new Date(emp.anofundacao).toLocaleDateString('pt-BR', { timeZone: 'UTC' }) %></small>
+                            <% } %>
+                            <small>CNPJ <%= emp.cnpj %></small>
+                        </article>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div><a class="brand footer-brand" href="/site"><span class="brand-mark">SJ</span><strong>Sistema
+                        Jurídico</strong></a>
+                <p>Democratizando o acesso à informação jurídica com clareza, contexto e responsabilidade.</p>
+            </div>
+            <div><strong>Explore</strong><a href="/site/casos">Casos</a><a href="/site/empresas">Empresas</a><a
+                    href="/site/tribunais">Tribunais</a></div>
+            <div><strong>Institucional</strong><a href="#">Sobre o projeto</a><a href="#">Fontes e metodologia</a><a
+                    href="#">Privacidade</a></div>
+            <div><strong>Receba o boletim</strong>
+                <p>Análises e novidades jurídicas, toda semana.</p>
+                <form class="newsletter"><input type="email" aria-label="Seu e-mail" placeholder="seu@email.com"><button
+                        aria-label="Assinar">→</button></form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container"><span>© 2025 Sistema Jurídico.</span><span>Não substitui orientação jurídica
+                    profissional.</span></div>
+        </div>
+    </footer>
+</body>
+
+</html>
